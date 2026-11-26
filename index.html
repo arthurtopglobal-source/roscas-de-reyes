@@ -122,7 +122,18 @@ h2.title{ font-family:Georgia,serif; font-size:clamp(28px,4.2vw,44px); line-heig
 .mcard .gain{ margin-top:14px; background:var(--verde-soft); color:var(--verde-deep); border-radius:14px; padding:12px; font-weight:900; font-size:26px; }
 .mcard .gain small{ display:block; font-size:12px; font-weight:700; letter-spacing:.06em; }
 .payback{ position:relative; z-index:1; margin:26px auto 0; max-width:720px; background:var(--amarillo); color:#3f2c00; border-radius:18px; padding:16px 22px; font-weight:800; font-size:18px; box-shadow:0 12px 26px rgba(0,0,0,.2); }
-.pnote{ text-align:center; color:#dff7e8; font-size:13px; margin-top:14px; position:relative; z-index:1; }
+.pnote{ text-align:center; color:#dff7e8; font-size:13px; margin-top:14px; position:relative; z-index:1; max-width:760px; margin-left:auto; margin-right:auto; }
+.money.two{ grid-template-columns:repeat(2,1fr); max-width:720px; margin-left:auto; margin-right:auto; }
+
+/* ===== POR DENTRO ===== */
+.inside{ background:#fff; }
+.pages{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:30px; }
+.pages figure, .calcshot{ background:var(--crema); border-radius:16px; padding:10px; box-shadow:0 10px 26px rgba(0,0,0,.08); }
+.pages img{ aspect-ratio:3/4; object-fit:cover; object-position:top; width:100%; border-radius:8px; border:1px solid var(--line); }
+.pages figcaption, .calcshot figcaption{ font-size:13.5px; font-weight:800; margin-top:8px; color:#4d443c; }
+.calcshot{ max-width:760px; margin:22px auto 0; }
+.calcshot img{ width:100%; border-radius:8px; border:1px solid var(--line); }
+.calcshot figcaption{ font-weight:600; }
 
 /* ================= 12. SIN AZÚCAR ================= */
 .diff{ background:#fff; }
@@ -141,7 +152,7 @@ h2.title{ font-family:Georgia,serif; font-size:clamp(28px,4.2vw,44px); line-heig
 .vrow.bono .v{ color:var(--verde-deep); }
 .vrow .tag{ display:inline-block; background:var(--rojo); color:#fff; font-size:10.5px; font-weight:900; padding:2px 8px; border-radius:10px; margin-right:6px; letter-spacing:.05em; vertical-align:middle; }
 .vtotal{ display:flex; justify-content:space-between; padding:14px 0 6px; font-weight:900; font-size:18px; }
-.vtotal s{ color:#aa9f94; }
+.vtotal .ref{ color:#8a7f74; }
 .vtoday{ display:flex; justify-content:space-between; align-items:center; background:var(--verde-soft); margin:8px -22px -10px; padding:16px 22px; border-radius:0 0 22px 22px; font-weight:900; font-size:20px; color:var(--verde-deep); }
 .vtoday .p{ font-size:34px; }
 
@@ -202,16 +213,27 @@ h2.title{ font-family:Georgia,serif; font-size:clamp(28px,4.2vw,44px); line-heig
 footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:28px 16px 96px; font-size:12.5px; }
 
 /* ================= 19. CTA FIJO MÓVIL ================= */
-.sticky{ display:none; position:fixed; left:12px; right:12px; bottom:12px; z-index:70; }
+.sticky{ display:none; position:fixed; left:12px; right:12px; bottom:12px; z-index:70; transform:translateY(160%); transition:transform .3s ease; }
+.sticky.show{ transform:none; }
 .sticky .cta{ width:100%; font-size:16.5px; padding:16px 18px; }
 
 /* ================= 20. RESPONSIVE ================= */
 @media(max-width:900px){ .gallery{ grid-template-columns:repeat(2,1fr); } }
 @media(max-width:860px){
   .hero-grid,.how-grid,.stack-grid{ grid-template-columns:1fr; }
-  .hero-grid{ text-align:center; } .checks{ display:inline-block; text-align:left; }
-  .hero-img{ max-width:440px; margin:0 auto; }
-  .floatbadge{ left:6px; } .sticker{ right:2px; width:104px; height:104px; } .sticker .big{ font-size:23px; }
+  .hero-grid{ text-align:center; gap:0; grid-template-columns:minmax(0,1fr); } .checks{ display:inline-block; text-align:left; }
+  .hero-grid > *, .hero-text > *{ min-width:0; max-width:100%; }
+  /* celular: foto do produto logo abaixo do título */
+  .hero-text{ display:contents; }
+  .hero .eyebrow{ order:1; justify-self:center; }
+  .hero h1{ order:2; }
+  .hero-img{ order:3; max-width:400px; width:100%; margin:14px auto 24px; }
+  .hero .lead{ order:4; }
+  .hero .checks{ order:5; justify-self:center; }
+  .hero .cta{ order:6; justify-self:center; }
+  .hero .under-cta{ order:7; }
+  .sticker{ right:-4px; top:-14px; width:96px; height:96px; font-size:11px; } .sticker .big{ font-size:23px; }
+  .pages{ grid-template-columns:repeat(2,1fr); gap:12px; }
   .grid3,.cgrid,.money{ grid-template-columns:1fr 1fr; }
   .pgrid,.who-grid{ grid-template-columns:1fr; }
   .diffbox{ grid-template-columns:1fr; text-align:center; } .diffbox img{ max-width:320px; margin:0 auto; }
@@ -220,7 +242,9 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
   .sticky{ display:block; }
 }
 @media(max-width:560px){
-  .grid3,.cgrid,.money{ grid-template-columns:1fr; }
+  .grid3,.cgrid,.money,.money.two{ grid-template-columns:1fr; }
+  .hero{ padding:30px 0 48px; }
+  .hero .lead{ font-size:16.5px; }
   .cta,.cta.big{ font-size:16.5px; padding:17px 22px; }
   section{ padding:56px 0; }
   .reyesbox{ padding:16px 20px; } .reyesbox .n{ font-size:46px; }
@@ -258,22 +282,21 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
 <!-- ===== HERO ===== -->
 <header class="hero">
   <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">👑 Recetario digital + calculadora · Acceso inmediato</span>
-      <h1>Hornea Roscas de Reyes <span class="g">Gourmet</span> que se venden solas y <span class="r">gana dinero</span> esta temporada desde tu cocina</h1>
-      <p class="lead">La masa base paso a paso, <span class="mark">8 roscas</span> (tradicional + 7 sabores gourmet), una línea <b>sin azúcar añadida</b> que casi nadie ofrece y la calculadora para saber exactamente cuánto cobrar. Aunque nunca hayas horneado.</p>
+    <div class="hero-text">
+      <span class="eyebrow">👑 Recetario digital + calculadora</span>
+      <h1>Aprende a hornear Roscas de Reyes <span class="g">Gourmet</span> y <span class="r">véndelas</span> esta temporada desde tu cocina</h1>
+      <p class="lead">Masa base paso a paso, <span class="mark">8 roscas</span> (tradicional + 7 gourmet), línea <b>sin azúcar añadida</b> y calculadora para saber cuánto cobrar. Aunque nunca hayas horneado.</p>
       <ul class="checks">
-        <li>Con 2 roscas gourmet vendidas recuperas lo que pagas*</li>
-        <li>Lo recibes en tu correo al instante, lo usas desde el celular</li>
+        <li>Con 2 roscas vendidas recuperas lo que pagas*</li>
+        <li>Acceso inmediato con tarjeta · lo usas desde el celular</li>
         <li>7 días de garantía: si no te convence, te devolvemos todo</li>
       </ul>
       <a href="#planes" class="cta big">¡Quiero mi recetario ahora! →</a>
-      <div class="under-cta">Desde $147 MXN · pago único · sin mensualidades</div>
+      <div class="under-cta">Desde $147 MXN · IVA incluido · pago único</div>
     </div>
     <div class="hero-img">
       <img src="img/hero.jpg" width="1000" height="1000" alt="Recetario Roscas de Reyes Gourmet para vender">
       <div class="sticker"><span>AHORRA</span><span class="big">$100</span><span>HOY</span></div>
-      <div class="floatbadge"><span class="ic">🍋</span><span>Incluye línea<br>sin azúcar</span></div>
     </div>
   </div>
 </header>
@@ -332,14 +355,30 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
   </div>
 </section>
 
+<!-- ===== POR DENTRO (páginas reales del producto) ===== -->
+<section class="inside">
+  <div class="wrap center">
+    <span class="eyebrow">Míralo por dentro</span>
+    <h2 class="title">Así se ve <span class="g">lo que recibes</span></h2>
+    <p class="lead narrow">Páginas reales del recetario y de la calculadora. Nada de promesas vagas: recetas con gramos, pasos y soluciones.</p>
+    <div class="pages">
+      <figure><img src="img/pag-portada.jpg" width="600" height="849" loading="lazy" alt="Portada del recetario Roscas de Reyes Gourmet para Vender"><figcaption>Portada</figcaption></figure>
+      <figure><img src="img/pag-masa.jpg" width="600" height="849" loading="lazy" alt="Página de la masa base con ingredientes y cantidades"><figcaption>Masa base con gramos exactos</figcaption></figure>
+      <figure><img src="img/pag-gourmet.jpg" width="600" height="849" loading="lazy" alt="Página de recetas gourmet: Lotus, Nutella y zarzamora"><figcaption>Rellenos gourmet</figcaption></figure>
+      <figure><img src="img/pag-problemas.jpg" width="600" height="849" loading="lazy" alt="Tabla de problemas y soluciones"><figcaption>Problemas y soluciones</figcaption></figure>
+    </div>
+    <figure class="calcshot"><img src="img/calculadora.jpg" width="1004" height="684" loading="lazy" alt="Calculadora de costos en Excel con el ejemplo de la Rosca Tradicional"><figcaption>📊 Calculadora de costos (Plan Completo) · ejemplo de la Rosca Tradicional: escribes tus precios y te da costo, precio sugerido y ganancia</figcaption></figure>
+  </div>
+</section>
+
 <!-- ===== CÓMO FUNCIONA ===== -->
 <section class="how">
   <div class="wrap how-grid">
     <div>
       <span class="eyebrow">Así de fácil</span>
       <h2 class="title">Hoy lo compras, <span class="g">hoy empiezas</span></h2>
-      <div class="step"><span class="n">1</span><div><b>Elige tu plan</b><p>Pagas seguro con Hotmart: tarjeta, PayPal o efectivo según disponibilidad.</p></div></div>
-      <div class="step"><span class="n">2</span><div><b>Recibe el acceso al instante</b><p>Te llega a tu correo. Lo abres en el celular mientras cocinas.</p></div></div>
+      <div class="step"><span class="n">1</span><div><b>Elige tu plan</b><p>Pagas seguro con Hotmart: tarjeta, Mercado Pago u otros métodos disponibles en México.</p></div></div>
+      <div class="step"><span class="n">2</span><div><b>Recibe tu acceso</b><p>Con tarjeta te llega al instante a tu correo (en efectivo puede tardar 1–2 días). Lo abres en el celular mientras cocinas.</p></div></div>
       <div class="step"><span class="n">3</span><div><b>Hornea y toma pedidos</b><p>Haz tu tanda de práctica, saca tus fotos y usa los scripts para vender.</p></div></div>
       <a href="#planes" class="cta" style="margin-top:6px">Quiero empezar hoy →</a>
     </div>
@@ -351,14 +390,13 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
 <section class="profit">
   <div class="wrap center">
     <span class="eyebrow">Las cuentas que emocionan</span>
-    <h2 class="title" style="color:#fff">Mira cuánto puedes ganar por cada rosca</h2>
-    <div class="money">
-      <div class="mcard"><div class="n">👑 Rosca tradicional</div><div class="row"><span>Te cuesta</span><b>~$40</b></div><div class="row"><span>La vendes a</span><b>~$180</b></div><div class="gain"><small>GANAS</small>~$140</div></div>
-      <div class="mcard"><div class="n">✨ Rosca gourmet</div><div class="row"><span>Te cuesta</span><b>~$55</b></div><div class="row"><span>La vendes a</span><b>~$280</b></div><div class="gain"><small>GANAS</small>~$225</div></div>
-      <div class="mcard"><div class="n">🎁 Caja de mini-roscas</div><div class="row"><span>Te cuesta</span><b>~$90</b></div><div class="row"><span>La vendes a</span><b>~$450</b></div><div class="gain"><small>GANAS</small>~$360</div></div>
+    <h2 class="title" style="color:#fff">Así se ven las cuentas de una rosca</h2>
+    <div class="money two">
+      <div class="mcard"><div class="n">👑 Rosca tradicional</div><div class="row"><span>Te cuesta*</span><b>~$86</b></div><div class="row"><span>Precio sugerido</span><b>~$257</b></div><div class="gain"><small>TE QUEDAN</small>~$171</div></div>
+      <div class="mcard"><div class="n">💚 Rosca de pistache</div><div class="row"><span>Te cuesta*</span><b>~$148</b></div><div class="row"><span>Precio sugerido</span><b>~$370</b></div><div class="gain"><small>TE QUEDAN</small>~$222</div></div>
     </div>
-    <div class="payback">💡 Con solo <u>2 roscas gourmet</u> vendidas ya recuperaste lo que pagaste por el plan Completo.</div>
-    <p class="pnote">*Valores de ejemplo en MXN; dependen de tus ingredientes, tu zona y tus precios. Con la calculadora incluida sacas tus números exactos.</p>
+    <div class="payback">💡 Con <u>2 roscas</u> vendidas ya recuperaste lo que pagaste por el plan Completo.</div>
+    <p class="pnote">*Ejemplo hecho con la calculadora incluida, con precios de insumos de referencia en MXN, $5 de gas y $20 de tu mano de obra por rosca (multiplicador 3 en la tradicional y 2.5 en la gourmet). Tus números dependen de tus ingredientes, tu zona y tus precios. No garantizamos ingresos.</p>
   </div>
 </section>
 
@@ -386,7 +424,7 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
     <div class="stack-grid">
       <img src="img/pack.jpg" width="1100" height="829" loading="lazy" alt="Recetario, calculadora y bonos del plan Completo">
       <div class="vtable">
-        <div class="vrow"><span>👑 Recetario Roscas de Reyes Gourmet (8 roscas + masa + decoración)</span><span class="v">$297</span></div>
+        <div class="vrow"><span>👑 Recetario Roscas de Reyes Gourmet (8 roscas + masa + decoración)</span><span class="v">$147</span></div>
         <div class="vrow bono"><span><span class="tag">BONO 1</span>🍋 Línea sin azúcar añadida</span><span class="v">$199</span></div>
         <div class="vrow bono"><span><span class="tag">BONO 2</span>📊 Calculadora de costos (Excel)</span><span class="v">$149</span></div>
         <div class="vrow bono"><span><span class="tag">BONO 3</span>📅 Calendario de producción</span><span class="v">$99</span></div>
@@ -394,7 +432,7 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
         <div class="vrow bono"><span><span class="tag">BONO 5</span>💬 Guía de ventas con scripts</span><span class="v">$199</span></div>
         <div class="vrow bono"><span><span class="tag">BONO 6</span>📸 Guía de fotos que venden</span><span class="v">$99</span></div>
         <div class="vrow"><span>📜 Certificado de finalización</span><span class="v">Incluido</span></div>
-        <div class="vtotal"><span>Valor de referencia</span><s>$1,191 MXN</s></div>
+        <div class="vtotal"><span>Valor de referencia del paquete</span><span class="ref">$1,041 MXN</span></div>
         <div class="vtoday"><span>Hoy, precio de lanzamiento</span><span class="p">$297</span></div>
       </div>
     </div>
@@ -411,7 +449,7 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
       <div class="plan">
         <div class="pname">⚡ Básico</div>
         <div class="price"><span class="now">$147</span><span class="cur">MXN</span></div>
-        <div class="once">pago único · acceso de por vida</div>
+        <div class="once">IVA incluido · pago único · acceso de por vida</div>
         <ul>
           <li>Recetario completo (masa + tradicional + 7 gourmet)</li>
           <li>Decoración premium</li>
@@ -427,8 +465,8 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
         <div class="ribbon">⭐ Mejor valor</div>
         <img class="mini" src="img/pack.jpg" width="1100" height="829" loading="lazy" alt="">
         <div class="pname">👑 Completo</div>
-        <div class="price"><span class="old">Valor $1,191</span><span class="now">$297</span><span class="cur">MXN</span></div>
-        <div class="once">pago único · acceso de por vida</div>
+        <div class="price"><span class="now">$297</span><span class="cur">MXN</span></div>
+        <div class="once">IVA incluido · pago único · acceso de por vida</div>
         <span class="raise" id="raise">⏰ Precio de lanzamiento · sube a $397</span>
         <ul>
           <li>Todo lo del plan Básico</li>
@@ -494,12 +532,12 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
   <div class="wrap narrow">
     <div class="center"><span class="eyebrow">Resuelve tus dudas</span><h2 class="title">Preguntas frecuentes</h2></div>
     <div style="margin-top:26px">
-      <div class="q"><button>¿Cómo recibo el recetario? <span class="pm">+</span></button><div class="a"><p>Es 100% digital. Apenas se confirma tu pago, Hotmart te envía el acceso por correo. Lo abres en tu celular, tablet o computadora.</p></div></div>
+      <div class="q"><button>¿Cómo recibo el recetario? <span class="pm">+</span></button><div class="a"><p>Es 100% digital. Apenas se confirma tu pago, Hotmart te envía el acceso por correo (con tarjeta es al instante; en efectivo puede tardar 1–2 días). Lo abres en tu celular, tablet o computadora.</p></div></div>
       <div class="q"><button>¿Necesito experiencia? <span class="pm">+</span></button><div class="a"><p>No. Empiezas con la masa base paso a paso y llegas hasta las versiones gourmet. Está pensado para principiantes.</p></div></div>
       <div class="q"><button>¿Necesito batidora? <span class="pm">+</span></button><div class="a"><p>No es obligatoria. La masa se puede amasar a mano; solo te tomará unos minutos más.</p></div></div>
       <div class="q"><button>¿Cuánto puedo ganar? <span class="pm">+</span></button><div class="a"><p>Depende de tus precios, tus costos, tu zona y cuántas roscas vendas. La calculadora incluida te ayuda a definir un precio con ganancia. No garantizamos ingresos.</p></div></div>
       <div class="q"><button>¿Es pago único o mensualidad? <span class="pm">+</span></button><div class="a"><p>Pago único. Pagas una vez y el acceso es de por vida, para que lo uses cada temporada.</p></div></div>
-      <div class="q"><button>¿Qué métodos de pago hay? <span class="pm">+</span></button><div class="a"><p>Hotmart acepta tarjeta, PayPal y los métodos disponibles en México, incluido pago en efectivo en algunos casos. Los ves en el checkout.</p></div></div>
+      <div class="q"><button>¿Qué métodos de pago hay? <span class="pm">+</span></button><div class="a"><p>Hotmart acepta tarjeta de débito y crédito, Mercado Pago y otros métodos disponibles en México. Los ves todos en el checkout. El precio ya incluye IVA.</p></div></div>
       <div class="q"><button>¿Las recetas sin azúcar sirven para diabéticos? <span class="pm">+</span></button><div class="a"><p>No llevan azúcar añadida, pero sí carbohidratos de la harina. Son una opción para reducir el azúcar que no sustituye la indicación médica.</p></div></div>
       <div class="q"><button>¿Y si no me gusta? <span class="pm">+</span></button><div class="a"><p>Tienes 7 días de garantía. Pides tu reembolso completo en Hotmart, sin preguntas.</p></div></div>
     </div>
@@ -517,7 +555,7 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
   </div>
 </section>
 
-<footer>Roscas de Reyes Gourmet · Recetario digital · © 2026<br>Producto digital. Los resultados dependen de tu trabajo y tu mercado; no se garantizan ingresos.</footer>
+<footer><b>Dulce Emprendedora</b> · Roscas de Reyes Gourmet · Recetario digital · © 2026<br>Pagos procesados de forma segura por Hotmart. Producto digital. Los resultados dependen de tu trabajo y tu mercado; no se garantizan ingresos.</footer>
 
 <div class="sticky"><a href="#planes" class="cta">👑 Quiero mi recetario →</a></div>
 
@@ -558,6 +596,14 @@ function tick(){
   var el = document.getElementById('reyes'); if (el) el.textContent = days;
 }
 tick(); setInterval(tick, 1000);
+
+/* botón fijo del celular: aparece solo después de pasar el primer botón */
+(function(){
+  var st = document.querySelector('.sticky'), heroCta = document.querySelector('.hero .cta');
+  if (!st || !heroCta) return;
+  function upd(){ st.classList.toggle('show', heroCta.getBoundingClientRect().bottom < 0); }
+  window.addEventListener('scroll', upd, { passive:true }); upd();
+})();
 </script>
 </body>
 </html>
