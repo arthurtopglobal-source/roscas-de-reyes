@@ -599,9 +599,13 @@ tick(); setInterval(tick, 1000);
 
 /* botón fijo del celular: aparece solo después de pasar el primer botón */
 (function(){
-  var st = document.querySelector('.sticky'), heroCta = document.querySelector('.hero .cta');
+  var st = document.querySelector('.sticky'), heroCta = document.querySelector('.hero .cta'), planes = document.getElementById('planes');
   if (!st || !heroCta) return;
-  function upd(){ st.classList.toggle('show', heroCta.getBoundingClientRect().bottom < 0); }
+  function upd(){
+    var p = planes ? planes.getBoundingClientRect() : null;
+    var enPlanes = p && p.top < window.innerHeight && p.bottom > 0;
+    st.classList.toggle('show', heroCta.getBoundingClientRect().bottom < 0 && !enPlanes);
+  }
   window.addEventListener('scroll', upd, { passive:true }); upd();
 })();
 </script>
