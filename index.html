@@ -224,7 +224,12 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
   .cta,.cta.big{ font-size:16.5px; padding:17px 22px; }
   section{ padding:56px 0; }
   .reyesbox{ padding:16px 20px; } .reyesbox .n{ font-size:46px; }
-  .topbar{ font-size:13px; }
+  .topbar{ font-size:13px; padding:7px 10px; line-height:1.25; }
+  .topbar .tb1, .topbar .tb2{ display:block; white-space:nowrap; }
+  .topbar .tbsep{ display:none; }
+  .topbar .tb2{ font-size:12px; font-weight:700; opacity:.95; margin-top:4px; }
+  .topbar .tb2 b{ padding:1px 7px; }
+  .topbar .dot{ width:8px; height:8px; margin-right:6px; }
 }
 @media (prefers-reduced-motion: reduce){ *,*::before,*::after{ animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
 </style>
@@ -248,7 +253,7 @@ footer{ background:var(--verde-ink); color:#bfe8cf; text-align:center; padding:2
      ====================================================================== -->
 
 <!-- ===== BARRA SUPERIOR ===== -->
-<div class="topbar" id="topbar"><span class="dot"></span>🔥 PRECIO DE LANZAMIENTO: <b>$297</b> · sube a <b>$397</b> en <b id="cd">--</b></div>
+<div class="topbar" id="topbar"><span class="tb1"><span class="dot"></span>🔥 PRECIO DE LANZAMIENTO: <b>$297</b></span><span class="tbsep"> · </span><span class="tb2">sube a <b>$397</b> en <b id="cd">--</b></span></div>
 
 <!-- ===== HERO ===== -->
 <header class="hero">
